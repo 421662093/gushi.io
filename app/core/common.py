@@ -3,6 +3,8 @@
 from flask import make_response
 import json
 import time
+import cgi
+import HTMLParser
 
 
 # 自定义jsonify 解决flask.jsonify无法返回中文
@@ -82,3 +84,12 @@ def getavatar(userid=0, _type=1):  # 获取用户头像地址
             return avapath + "/0" + numbers[0] + numbers[1] + "/" + numbers[2] + numbers[3] + "/" + numbers[4] + numbers[5] + "/" + numbers[6] + numbers[7] + houzhui
         else:
             return avapath + "/" + numbers[0] + numbers[1] + numbers[2] + "/" + numbers[3] + numbers[4] + "/" + numbers[5] + numbers[6] + "/" + numbers[7] + numbers[8] + houzhui
+
+
+def htmlescape(string):  # html编码
+    return cgi.escape(string)
+
+
+def htmlunescape(string):  # html反编码
+    html_parser = HTMLParser.HTMLParser()
+    return html_parser.unescape(string)

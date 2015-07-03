@@ -27,7 +27,7 @@
 <div class="clearfix" id="page">
   <!-- column -->
   <div class="position_content" id="page_position_content">
-    <a class="nonblock nontext clearfix colelem" id="u1234-4" href="index.html"><!-- content -->
+    <a class="nonblock nontext clearfix colelem" id="u1234-4" href="/"><!-- content -->
     <p>
       有故事
     </p>
@@ -50,7 +50,7 @@
           <div class="clearfix colelem" id="u1476-10">
             <!-- content -->
             <p>
-              {{event.start}} 开始&nbsp;&nbsp;&nbsp; <span id="u1476-2"></span><span id="u1476-3">{{event.end}} 报名截止</span>
+              {{func.stamp2time(event.start,'%Y-%m-%d %H:%M')}} 开始&nbsp;&nbsp;&nbsp; <span id="u1476-2"></span><span id="u1476-3">{{func.stamp2time(event.end,'%H:%M')}} 报名截止</span>
             </p>
             <p>
               &nbsp;
@@ -118,7 +118,7 @@
     <div class="clearfix colelem" id="pu1506-77">
       <!-- group -->
       <div class="clearfix grpelem" id="u1506-77">
-      {{event.content}}
+      {{func.unescape(event.content)|safe}}
       </div>
     </div>
     <div class="verticalspacer">

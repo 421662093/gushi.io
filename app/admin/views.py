@@ -60,7 +60,7 @@ def event_list():
 #@permission_required(Permission.LIST_USER)
 def event_edit(id):
     form = EditEventForm()
-    print form.validate_on_submit()
+
     if request.method == 'POST' and form.validate_on_submit():
         event = Event()
         event._id = id
@@ -68,7 +68,8 @@ def event_edit(id):
         event.start = form.start.data
         event.end = form.end.data
         event.address = form.address.data
-        event.content = form.content.data
+        event.content = common.htmlescape(form.content.data)
+        print str(form.validate_on_submit()) + '_' + event.title + '_' + str(event.start) + '_' + str(event.end) + '_' + event.address + '_' + event.content + '_'
         event.editinfo()
         return redirect(url_for('.event_list'))
     else:
@@ -94,7 +95,9 @@ def event_edit(id):
                 isevent = True
         else:
             event = []
-        return render_template('admin/event_edit.html', event=event, isevent=isevent, form=form)
+        func = {'stamp2time': common.stamp2time,
+                'unescape': common.htmlunescape}
+        return render_template('admin/event_edit.html', event=event, isevent=isevent, form=form, func=func)
 
 
 @admin.route('/logout')

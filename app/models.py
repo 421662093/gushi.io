@@ -92,6 +92,11 @@ class EventApply(db.Document):
         else:
             return EventApply.objects(event_id=eid).order_by("-date").limit(count)
 
+    @staticmethod
+    def isphone(eid, phone):
+        #.exclude('password_hash') 不包含字段
+        return EventApply.objects(event_id=eid, phone=phone)
+
 
 class AnonymousUser(AnonymousUserMixin):
 

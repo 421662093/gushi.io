@@ -35,18 +35,22 @@ def baoming(eid=0):
         form = EventApplyForm()
 
         if form.submit() and eid > 0:
-            item = EventApply()
-            item.event_id = eid
-            item.id = collection.get_next_id('topics')
-            item.name = form.name.data
-            item.phone = form.phone.data
-            item.company = form.company.data
-            item.job = form.job.data
-            item.remark = form.remark.data
-            item.save()
+            if not EventApply.isphone(eid, form.phone.data):
+                item = EventApply()
+                item.event_id = eid
+                item.id = collection.get_next_id('topics')
+                item.name = form.name.data
+                item.phone = form.phone.data
+                item.company = form.company.data
+                item.job = form.job.data
+                item.remark = form.remark.data
+                item.save()
+                return '{"info":"seccess","status":"y"}'
+            else:
+                return '{"info":"您已报名，无需再次提交","status":"n"}'
             # print str(item.id) + '_' + item.name + '_' + item.phone + '_' +
             # item.company + '_' + item.job + '_' + item.remark
-            return '{"info":"seccess","status":"y"}'
+
         else:
             return '{"info":"error","status":"n"}'
     else:
@@ -60,4 +64,7 @@ def baoming(eid=0):
         item.save()
         '''
         event = Event.getinfo(eid)
-        return render_template('baoming.html', event=event)
+        func = {'stamp2time': common.stamp2time,
+                'unescape': common.htmlunescape}
+
+        return render_template('baoming.html', event=event, func=func)

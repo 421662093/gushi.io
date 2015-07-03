@@ -2,17 +2,14 @@
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html>
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
 <title>{% block title %}{% endblock %} - 扶摇直上</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<meta content="" name="description"/>
-<meta content="" name="author"/>
+
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="/static/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="/static/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
@@ -21,7 +18,7 @@
 <link href="/static/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 {% block css %}{% endblock %}
-<link rel="shortcut icon" href="favicon.ico"/>
+
 </head>
 <body class="page-md page-quick-sidebar-over-content ">
 
@@ -50,38 +47,16 @@
 					</a>
 					<ul class="sub-menu">
 						<li class="active">
-							<a href="{{ url_for('.eventapply_list') }}">
+							<a href="{{ url_for('.event_list') }}">
 							<i class="icon-bar-chart"></i>
+							活动管理</a>
+						</li>
+						<li>
+							<a href="{{ url_for('.eventapply_list') }}">
+							<i class="icon-bulb"></i>
 							报名管理</a>
 						</li>
-						<li>
-							<a href="index_2.html">
-							<i class="icon-bulb"></i>
-							专家管理</a>
-						</li>
-						<li>
-							<a href="index_3.html">
-							<i class="icon-graph"></i>
-							留言管理</a>
-						</li>
-					</ul>
-				</li>
 
-				<li class="last ">
-					<a href="javascript:;">
-					<i class="icon-pointer"></i>
-					<span class="title">系统</span>
-					<span class="arrow "></span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="maps_google.html">
-							设置</a>
-						</li>
-						<li>
-							<a href="maps_vector.html">
-							退出</a>
-						</li>
 					</ul>
 				</li>
 			</ul>
