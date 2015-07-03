@@ -13,6 +13,10 @@
 <link href="/static/admin/css/layout.css" rel="stylesheet" type="text/css"/>
 <link id="style_color" href="/static/admin/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
 <link href="/static/admin/css/custom.css" rel="stylesheet" type="text/css"/>
+<script src="/static/scripts/page.js"></script>
+<script>
+
+</script>
 <!-- END THEME STYLES -->
 {% endblock %}
 
@@ -115,6 +119,21 @@
 								{% endfor %}
 								</tbody>
 								</table>
+							</div>
+							
+							<div class="row">
+							<div class="col-md-5 col-sm-12">
+							<div class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">
+							当前第 {{index}} 页，共 {{pagecount}} 页
+							</div>
+							</div>
+							<div class="col-md-7 col-sm-12">
+							<div class="dataTables_paginate paging_bootstrap_full_number" id="sample_1_paginate">
+							<ul class="pagination" style="visibility: visible;">
+							<script>Pagebtn('/admin/eventapplylist/{{eid}}',{{pagecount}},{{index}})</script>
+							</ul>
+							</div>
+							</div>
 							</div>
 						</div>
 					</div>

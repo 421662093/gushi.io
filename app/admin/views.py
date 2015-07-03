@@ -12,11 +12,12 @@ from ..core import common
 
 @admin.route('/eventapplylist', defaults={'eid': 0},)
 @admin.route('/eventapplylist/<int:eid>', methods=['GET', 'POST'])
+@admin.route('/eventapplylist/<int:eid>/<int:index>', methods=['GET', 'POST'])
 #@permission_required(Permission.LIST_USER)
 #@login_required
 #@admin_required
 #@permission_required(Permission.USER)
-def eventapply_list(eid):
+def eventapply_list(eid,index=1):
 
     if request.method == 'POST':
         page = request.args.get('page', 1, type=int)
@@ -24,26 +25,14 @@ def eventapply_list(eid):
 
         print 'post'
     else:
-
-        '''
-        col1 = models.Test()
-        col1.id = models.collection.get_next_id('test333')
-        col1.body = 'discovery2222'
-        col1.body_html = '222'
-        col1.save()
-
-        col1 = models.User()
-        col1.id = models.collection.get_next_id('user')
-        col1.email = '1@qq.com'
-        col1.username = 'clr'
-        col1.password = '123456'
-        col1.save()
-        '''
-        ea_list = EventApply.getlist(eid=eid)
+    	pagesize = 8
+    	count = EventApply.getcount(eid=eid)
+    	tpcount = common.getpagecount(count,pagesize)
+    	if index>tpcount:
+    		index = tpcount
+        ea_list = EventApply.getlist(eid=eid,index=index,pagesize=pagesize)
         func = {'stamp2time': common.stamp2time}
-
-        # orig.get(body='Ross19').update({'$rename': {'body_html': 'body_w'}})
-        return render_template('admin/eventapply_list.html', list=ea_list, common=func)
+        return render_template('admin/eventapply_list.html', list=ea_list, common=func,eid=eid,pagecount=tpcount,index=index)
 
 
 @admin.route('/eventlist')

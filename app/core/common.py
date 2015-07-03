@@ -93,3 +93,6 @@ def htmlescape(string):  # html编码
 def htmlunescape(string):  # html反编码
     html_parser = HTMLParser.HTMLParser()
     return html_parser.unescape(string)
+
+def getpagecount(count,pagesize):# 获取页码数
+	return (count  +  pagesize  - 1) / pagesize; 

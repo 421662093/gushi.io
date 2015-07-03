@@ -86,12 +86,20 @@ class EventApply(db.Document):
     date = db.IntField(default=common.getstamp(), db_field='d')
 
     @staticmethod
-    def getlist(eid=0, count=10):
-        if eid == 0:
-            return EventApply.objects().order_by("-date").limit(count)
-        else:
-            return EventApply.objects(event_id=eid).order_by("-date").limit(count)
+    def getlist(eid=0,index=1, pagesize=10):
 
+    	pageindex =(index-1)*pagesize
+        if eid == 0:
+            return EventApply.objects().order_by("-_id").skip(pageindex).limit(pagesize)
+        else:
+            return EventApply.objects(event_id=eid).order_by("-_id").skip(pageindex).limit(pagesize)
+
+    @staticmethod   
+    def getcount(eid=0):
+        if eid == 0:
+            return EventApply.objects.count()
+        else:
+            return EventApply.objects(event_id=eid).count()
     @staticmethod
     def isphone(eid, phone):
         #.exclude('password_hash') 不包含字段
