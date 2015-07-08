@@ -45,6 +45,7 @@ def getavatar(isa=1, userid=0, _type=1):  # 获取用户头像地址
 
 
 def getavatar(userid=0, _type=1):  # 获取用户头像地址
+
     houzhui = ".jpg"
     avapath = "/data/avatar"
 
@@ -94,5 +95,6 @@ def htmlunescape(string):  # html反编码
     html_parser = HTMLParser.HTMLParser()
     return html_parser.unescape(string)
 
-def getpagecount(count,pagesize):# 获取页码数
-	return (count  +  pagesize  - 1) / pagesize; 
+
+def getpagecount(count, pagesize):  # 获取页码数
+    return (count + pagesize - 1) / pagesize
